@@ -1,14 +1,15 @@
-import img from '../images/placeholder_img.jpg';
+//import img from '../images/placeholder_img.jpg';
 import "../styles/components/PreviewItem.scss";
 
-
-const PreviewItem = (props) => {
+const PreviewItem = ({ podcast }) => {
 return (<li className='previewItem'>
         <div className="previewItem__imgContainer">
-            <img className='previewItem__imgContainer--img' src={img} alt='Podcast cover' title='Podcast cover'/>
+            <img className='previewItem__imgContainer--img' src={podcast.image} alt='Podcast cover' title='Podcast cover'/>
         </div>
-        <h2 className='previewItem__title'>Podcast title</h2>
-        <p className='previewItem__author'>Author</p>
+       
+        <h2 className='previewItem__title'>{podcast.title}</h2>
+     
+        <p className='previewItem__author'>Author: {podcast.author}</p>
     </li>)
 };
 

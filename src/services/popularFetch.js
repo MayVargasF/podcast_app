@@ -4,8 +4,13 @@ const getPopular = () => {
   )
     .then((response) => response.json())
     .then((data) => {
-      console.log(data.feed.entry);
-      return data.feed.entry;
+      const podcastList =  data.feed.entry;
+      const dataClean = podcastList.map(podcast => ({
+        image: podcast['im:image'][2].label,
+        title: podcast.title.label,
+        author:  podcast['im:artist'].label
+      }));
+      return dataClean;
     });
 };
 

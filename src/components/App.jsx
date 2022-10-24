@@ -18,7 +18,7 @@ function App() {
    getPopularPodcasts().then((data) => setPopularPodcasts(data))
   },[])
 
-  //console.log(popularPodcasts);
+  console.log(popularPodcasts);
 
 
 
@@ -26,7 +26,7 @@ function App() {
     <div className='globalContainer'>
       <Header />
       <Filter />
-      <ResultsList/>
+      <ResultsList popularPodcasts={popularPodcasts} />
     </div>
   );
 }

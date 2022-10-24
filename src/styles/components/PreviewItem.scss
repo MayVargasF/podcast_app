@@ -23,19 +23,30 @@
             height: 100%;
             object-fit: cover;
         }
-        
     }
+
 
     &__title {
         text-transform: uppercase;
         font-weight: bolder;
+        text-align: center;
+        width: 80%;
+
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden
     }
+    
 
     &__author {
         margin-bottom: 15px;
         color: rgb(114, 114, 114);
         font-weight: 600;
+        text-align: center;
+
+        width: 80%;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden
     }
-
-
 }
