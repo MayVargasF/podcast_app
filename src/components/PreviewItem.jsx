@@ -2,7 +2,7 @@
 import "../styles/components/PreviewItem.scss";
 
 const PreviewItem = ({ podcast }) => {
-return (<li className='previewItem'>
+return (<li className='previewItem' >
         <div className="previewItem__imgContainer">
             <img className='previewItem__imgContainer--img' src={podcast.image} alt='Podcast cover' title='Podcast cover'/>
         </div>

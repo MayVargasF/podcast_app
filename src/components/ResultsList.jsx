@@ -1,22 +1,22 @@
 import PreviewItem from "./PreviewItem";
 import "../styles/components/ResultsList.scss";
 
+import { Link } from 'react-router-dom';
+
 
 
 
 function ResultsList({ popularPodcasts }) {
   
-  const podcast = popularPodcasts.map(podcast =>  <PreviewItem podcast={podcast}/>)
+  const podcast = popularPodcasts.map((podcast, index) => 
+   <Link to={`/podcast/${podcast.id}`} key={index}>
+    <PreviewItem podcast={ podcast }/>
+  </Link>)
 
 
   return (
     <ul className="resultList">
-      {/* <PreviewItem />
-      <PreviewItem />
-      <PreviewItem />
-      <PreviewItem />
-      <PreviewItem /> */}
-      {podcast}
+      { podcast }
     </ul>
   );
 }
