@@ -1,6 +1,8 @@
-const PodcastDetails = () => { 
+import InfoPodcast from "./infoPodcast.jsx";
+
+const PodcastDetails = ({podcastFound}) => { 
     return (<>
-    <p></p>
+   <InfoPodcast podcastFound={podcastFound}/>
     </>)
 };
 

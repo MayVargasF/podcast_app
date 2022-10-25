@@ -1,7 +1,10 @@
 @import "core/Reset";
 @import "core/Variables";
 
-
 .globalContainer {
-    margin: 50px;
+  margin: 50px;
+}
+
+.link {
+  text-decoration: none;
 }

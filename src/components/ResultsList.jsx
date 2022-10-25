@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 function ResultsList({ popularPodcasts }) {
   
   const podcast = popularPodcasts.map((podcast, index) => 
-   <Link to={`/podcast/${podcast.id}`} key={index}>
+   <Link className="link" to={`/podcast/${podcast.id}`} key={index}>
     <PreviewItem podcast={ podcast }/>
   </Link>)
 

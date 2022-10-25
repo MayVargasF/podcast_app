@@ -6,7 +6,7 @@ import PodcastDetails from './PodcastDetails.jsx';
 import getPopularPodcasts from "../services/popularFetch.js";
 
 import { useEffect, useState } from "react";
-import {  Routes, Route } from 'react-router-dom';
+import {  Routes, Route, matchPath,useLocation } from 'react-router-dom';
 
 import "../styles/App.scss";
 
@@ -21,7 +21,15 @@ function App() {
    getPopularPodcasts().then((data) => setPopularPodcasts(data))
   },[])
 
-  console.log(popularPodcasts);
+  //console.log(popularPodcasts);
+
+  const { pathname } = useLocation();
+  const dataPath = matchPath ('/podcast/:podcastId', pathname);
+
+  const podcastId = dataPath !== null ? dataPath.params.podcastId : null;
+  const podcastFound = popularPodcasts.find(podcast => podcast.id === podcastId );
+ 
+  console.log(podcastFound);
 
 
 
@@ -35,7 +43,7 @@ function App() {
           <Filter />
           <ResultsList popularPodcasts={popularPodcasts} />
         </main>} />
-        <Route path='/podcast/:podcastId' element={ <PodcastDetails/> }/>
+        <Route path='/podcast/:podcastId' element={ <PodcastDetails podcastFound = {podcastFound}/> }/>
       </Routes>
           
       
