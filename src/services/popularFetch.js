@@ -5,7 +5,6 @@ const getPopular = () => {
     .then((response) => response.json())
     .then((data) => {
       const podcastList = data.feed.entry;
-      console.log(podcastList);
       const dataClean = podcastList.map((podcast) => ({
         id: podcast.id.attributes["im:id"].toString(),
         image: podcast["im:image"][2].label,
