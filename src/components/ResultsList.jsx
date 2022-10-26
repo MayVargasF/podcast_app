@@ -4,15 +4,10 @@ import "../styles/components/ResultsList.scss";
 import { Link } from 'react-router-dom';
 
 
-function ResultsList({ popularPodcasts, fetchEpisodes }) {
+function ResultsList({ popularPodcasts }) {
 
-  // const handleClick = (ev) => {
-  //   console.log('haciendo fetch');
-  //   fetchEpisodes();
-  // }
-  
   const podcast = popularPodcasts.map((podcast, index) => 
-   <Link className="link" to={`/podcast/${podcast.id}`} key={index} id={podcast.id} >
+   <Link className="link" to={`/podcast/${podcast.id}`} key={index} >
     <PreviewItem podcast={ podcast } />
   </Link>)
 

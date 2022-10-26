@@ -14,8 +14,6 @@ import "../styles/App.scss";
 
 
 
-
-
 function App() {
 
   const [popularPodcasts, setPopularPodcasts] = useState(ls.get('popularPodcastLocal', []));
@@ -42,26 +40,15 @@ function App() {
   const podcastId = dataPath !== null ? dataPath.params.podcastId : null;
   const podcastFound = popularPodcasts.find(podcast => podcast.id === podcastId );
   
- 
-  //console.log(podcastFound);
+
 
   //Fetch episodes podcast found
 
-  console.log(podcastId)
-  
-  const fetchEpisodes = () => {
-    console.log('ejecutando fetchEpisodes')
-    console(podcastId)
-   
-    // getEpisodes(podcastId).then(data => { 
-    //   setEpisodes(data);
-    // })
-  }
-
-
-  // useEffect(()=>{
-  //   getEpisodes(podcastId).then(data => setEpisodes(data))
-  // },[podcastId]);
+  useEffect(()=>{
+    if (podcastId) {
+      getEpisodes(podcastId).then(data => setEpisodes(data))
+    }
+  },[podcastId]);
 
 
   return (
@@ -72,7 +59,7 @@ function App() {
         <Route path='/' 
         element={<main>
           <Filter />
-          <ResultsList popularPodcasts={popularPodcasts} fetchEpisodes={fetchEpisodes} />
+          <ResultsList popularPodcasts={popularPodcasts} />
         </main>} />
         <Route path='/podcast/:podcastId' element={ <PodcastDetails podcastFound = {podcastFound}/> }/>
       </Routes>
