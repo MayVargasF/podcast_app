@@ -19,7 +19,7 @@ import "../styles/App.scss";
 function App() {
 
   const [popularPodcasts, setPopularPodcasts] = useState(ls.get('popularPodcastLocal', []));
-  const [episodes, setEpisodes] = useState([]);
+  
   
   
   //Fetch popular podcasts with details.
