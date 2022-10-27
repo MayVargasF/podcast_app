@@ -1,5 +1,4 @@
-//import img from '../images/placeholder_img.jpg';
-import "../styles/components/PreviewItem.scss";
+import "../../styles/components/PreviewItem.scss";
 
 const PreviewItem = ({ podcast }) => {
 return (<li className='previewItem' >

@@ -1,5 +1,5 @@
-import PreviewItem from "./PreviewItem";
-import "../styles/components/ResultsList.scss";
+import PreviewItem from "../commons/PreviewItem";
+import "../../styles/components/ResultsList.scss";
 
 import { Link } from 'react-router-dom';
 
