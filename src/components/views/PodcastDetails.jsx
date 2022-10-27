@@ -1,4 +1,7 @@
 import InfoPodcast from "../commons/infoPodcast.jsx";
+import EpisodesList from "../sections/EpisodesList.jsx";
+
+
 import getEpisodes from "../../services/podcastFetch.js";
 
 import { useParams } from "react-router";
@@ -18,6 +21,7 @@ const PodcastDetails = ({ podcastFound }) => {
 
     return (<>
    <InfoPodcast podcastFound={podcastFound}/>
+   <EpisodesList/>
     </>)
 };
 
