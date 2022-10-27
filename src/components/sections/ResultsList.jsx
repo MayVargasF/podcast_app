@@ -6,10 +6,6 @@ import { Link } from 'react-router-dom';
 
 function ResultsList({ popularPodcasts, fetchEpisodes }) {
 
-  // const handleClick = (ev) => {
-  //   console.log('haciendo fetch');
-  //   fetchEpisodes();
-  // }
   
   const podcast = popularPodcasts.map((podcast, index) => 
    <Link className="link" to={`/podcast/${podcast.id}`} key={index} id={podcast.id} >

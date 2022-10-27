@@ -1,4 +1,4 @@
-import '../styles/components/InfoPodcast.scss';
+import '../../styles/components/InfoPodcast.scss';
 
 const InfoPodcast = ({podcastFound}) => { 
 
