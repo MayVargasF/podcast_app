@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import '../../styles/components/EpisodesList.scss';
 
 function EpisodesList() {
 
@@ -10,26 +11,22 @@ function EpisodesList() {
   
   
     return (
-        <section>
+        <section className='episodesList'>
+         <h2 className='episodesList__title'>Episodes: 66</h2> 
+        <article className='episodesList__episodesContainer'>
+
+            <ul className='episodesList__episodesContainer__header'>
+                <li>Title</li>
+                <li className='episodesList__episodesContainer__center'>Date</li>
+                <li className='episodesList__episodesContainer__center'>Duration</li>
+            </ul>
+            <ul className='episodesList__episodesContainer__episode'>
+                <li><Link to='' className='episodesList__episodesContainer__episode__link'>Título podcast</Link></li>
+                <li className='episodesList__episodesContainer__center'>09/09/2021</li>
+                <li className='episodesList__episodesContainer__center'>3:56</li>
+            </ul>
             
-            <table>
-    <caption>Episodes: 99</caption>
-    <thead>
-    <tr>
-        <th scope="col">Title</th>
-        <th scope="col">Date</th>
-        <th scope="col">Duration</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <th scope="row">Episodio 1</th>
-        <td>01/12/2021</td>
-        <td>14:00</td>
-    </tr>
-    </tbody>
-   
-</table>
+        </article>
       </section>
     );
   }

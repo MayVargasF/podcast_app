@@ -1,0 +1,49 @@
+
+
+
+.episodesList {
+    margin: 20px;
+    width: 60%;
+    
+    
+    &__title {
+        font-weight: bolder;
+        font-size: 24px;
+        padding: 20px;
+        box-shadow: -2px 8px 10px 3px rgba(200, 200, 200, 0.721);
+    }
+
+    &__episodesContainer {
+    margin-top:50px;
+    display: grid;
+    gap: 10px;
+    padding: 20px;
+    box-shadow: -2px 8px 10px 3px rgba(200, 200, 200, 0.721);
+    
+    &__header {
+        display: grid;
+        grid-template-columns: 3fr 1fr 1fr;
+        font-weight: bolder;
+        padding-bottom: 10px;
+        border-bottom: 2.2px solid rgba(128, 128, 128, 0.367);
+    }
+
+
+    &__episode {
+        display: grid;
+        grid-template-columns: 3fr 1fr 1fr;
+        padding-bottom: 10px;
+        border-bottom: 1px solid rgba(128, 128, 128, 0.367);
+
+        &__link {
+            text-decoration: none;
+        }
+    }
+
+    &__center {
+        text-align: center;
+    }
+
+    }
+    
+}
