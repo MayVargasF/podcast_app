@@ -7,8 +7,18 @@ const getEpisodes = (podcastId) => {
     .then((response) => response.json())
     .then((data) => {
       const podcastInfo = JSON.parse(data.contents)?.results;
-      console.log(JSON.parse(data.contents));
-      return podcastInfo;
+      console.log(podcastInfo);
+
+      const dataClean = podcastInfo.map((episode) => ({
+        name: episode.trackName,
+        date: episode.releaseDate,
+        duration: episode.trackTimeMillis,
+        track: episode.previewUrl,
+      }));
+
+      dataClean.shift();
+      console.log(dataClean);
+      return dataClean;
     });
 };
 

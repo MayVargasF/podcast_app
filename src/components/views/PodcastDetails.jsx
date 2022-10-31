@@ -11,9 +11,12 @@ import '../../styles/components/PodcastDetails.scss';
 
 const PodcastDetails = ({ podcastFound }) => { 
 
+  //Llevarnos variable de estado y useEffect a app para poder pasárselo a EpisodeDetails.
+
   const [episodes, setEpisodes] = useState([]);
 
   const params = useParams();
+
 
   useEffect(()=>{
     getEpisodes(params.podcastId).then(data => setEpisodes(data))
@@ -21,7 +24,7 @@ const PodcastDetails = ({ podcastFound }) => {
 
     return (<div className='podcastDetails'>
    <InfoPodcast podcastFound={podcastFound}/>
-   <EpisodesList/>
+   <EpisodesList episodes = {episodes}/>
     </div>)
 };
 

@@ -1,18 +1,20 @@
 import { Link } from 'react-router-dom';
 import '../../styles/components/EpisodesList.scss';
 
-function EpisodesList() {
+function EpisodesList({episodes}) {
 
   
-    // const podcast = popularPodcasts.map((podcast, index) => 
-    //  <Link className="link" to={`/podcast/${podcast.id}`} key={index} id={podcast.id} >
-    //   <PreviewItem podcast={ podcast } />
-    // </Link>)
+    const episode = episodes.map((episode, index) => 
+    <ul key = {index} className='episodesList__episodesContainer__episode'>
+       <li><Link to='' className='episodesList__episodesContainer__episode__link'>{episode.name}</Link></li>
+       <li className='episodesList__episodesContainer__center'>{episode.date}</li>
+       <li className='episodesList__episodesContainer__center'>{episode.duration}</li>
+    </ul>)
   
   
     return (
         <section className='episodesList'>
-         <h2 className='episodesList__title'>Episodes: 66</h2> 
+         <h2 className='episodesList__title'>Episodes: {episodes.length}</h2> 
         <article className='episodesList__episodesContainer'>
 
             <ul className='episodesList__episodesContainer__header'>
@@ -20,11 +22,8 @@ function EpisodesList() {
                 <li className='episodesList__episodesContainer__center'>Date</li>
                 <li className='episodesList__episodesContainer__center'>Duration</li>
             </ul>
-            <ul className='episodesList__episodesContainer__episode'>
-                <li><Link to='' className='episodesList__episodesContainer__episode__link'>Título podcast</Link></li>
-                <li className='episodesList__episodesContainer__center'>09/09/2021</li>
-                <li className='episodesList__episodesContainer__center'>3:56</li>
-            </ul>
+           
+           {episode}
             
         </article>
       </section>
