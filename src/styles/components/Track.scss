@@ -1,0 +1,26 @@
+.track {
+    width: min-content;
+    height: min-content;
+    padding: 20px;
+    box-shadow: -2px 5px 10px -3px rgba(156, 156, 156, 0.721);
+
+
+    &__title {
+        font-weight: bolder;
+        padding-top: 20px;
+      }
+
+    &__description {
+        font-style: italic;
+        padding-top: 5px;
+        color: #3c3e42;
+        margin-bottom: 20px;
+        }
+
+
+    &__audio {
+       
+        color: #3c3e42;
+    }
+    
+}

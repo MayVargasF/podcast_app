@@ -1,12 +1,12 @@
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import '../../styles/components/EpisodesList.scss';
 
-function EpisodesList({episodes}) {
-
-  
+function EpisodesList({ episodes }) {
+    const params = useParams();
+   
     const episode = episodes.map((episode, index) => 
     <ul key = {index} className='episodesList__episodesContainer__episode'>
-       <li><Link to='' className='episodesList__episodesContainer__episode__link'>{episode.name}</Link></li>
+       <li><Link to={`/podcast/${params.podcastId}/episode/${episode.id}`}className='episodesList__episodesContainer__episode__link'>{episode.name}</Link></li>
        <li className='episodesList__episodesContainer__center'>{episode.date}</li>
        <li className='episodesList__episodesContainer__center'>{episode.duration}</li>
     </ul>)

@@ -14,6 +14,7 @@ const getEpisodes = (podcastId) => {
         date: episode.releaseDate,
         duration: episode.trackTimeMillis,
         track: episode.previewUrl,
+        id: episode.trackId.toString()
       }));
 
       dataClean.shift();
