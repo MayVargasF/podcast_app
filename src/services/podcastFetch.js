@@ -7,18 +7,31 @@ const getEpisodes = (podcastId) => {
     .then((response) => response.json())
     .then((data) => {
       const podcastInfo = JSON.parse(data.contents)?.results;
-      console.log(podcastInfo);
+
+      const millisecondsConversor = (ms) => {
+        const hours = Math.floor(ms / 3600000);
+        const mins = Math.floor((ms % 3600000) / 60000);
+        const secs = Math.floor(((ms % 3600000) % 60000) / 1000);
+        const result = hours !== 0 ? [hours, mins, secs] : [mins, secs];
+
+        return result.join(":");
+      };
+
+      const dataCleaner = (date) => {
+        const clearDate = new Date(date);
+        return `${clearDate.getDate()}/${clearDate.getMonth()}/${clearDate.getFullYear()}`;
+      };
 
       const dataClean = podcastInfo.map((episode) => ({
         name: episode.trackName,
-        date: episode.releaseDate,
-        duration: episode.trackTimeMillis,
+        description: episode.description,
+        date: dataCleaner(episode.releaseDate),
+        duration: millisecondsConversor(episode.trackTimeMillis),
         track: episode.previewUrl,
-        id: episode.trackId.toString()
+        id: episode.trackId.toString(),
       }));
 
       dataClean.shift();
-      console.log(dataClean);
       return dataClean;
     });
 };

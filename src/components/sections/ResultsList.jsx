@@ -1,23 +1,21 @@
 import PreviewItem from "../commons/PreviewItem";
 import "../../styles/components/ResultsList.scss";
 
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
+function ResultsList({ filteredPodcast }) {
+  const podcast = filteredPodcast.map((podcast, index) => (
+    <Link
+      className="link"
+      to={`/podcast/${podcast.id}`}
+      key={index}
+      id={podcast.id}
+    >
+      <PreviewItem podcast={podcast} />
+    </Link>
+  ));
 
-function ResultsList({ popularPodcasts, fetchEpisodes }) {
-
-  
-  const podcast = popularPodcasts.map((podcast, index) => 
-   <Link className="link" to={`/podcast/${podcast.id}`} key={index} id={podcast.id} >
-    <PreviewItem podcast={ podcast } />
-  </Link>)
-
-
-  return (
-    <ul className="resultList">
-      { podcast }
-    </ul>
-  );
+  return <ul className="resultList">{podcast}</ul>;
 }
 
 export default ResultsList;

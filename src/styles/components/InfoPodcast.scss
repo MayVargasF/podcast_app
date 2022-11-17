@@ -4,6 +4,7 @@
   display: flex;
   flex-direction: column;
   box-shadow: -2px 5px 10px -3px rgba(156, 156, 156, 0.721);
+  height: min-content;
 
   &__container {
     width: 80%;
@@ -11,7 +12,6 @@
     align-self: center;
     display: flex;
     justify-content: center;
-    //align-items: center;
     border-radius: 5px;
     overflow: hidden;
 
@@ -24,6 +24,7 @@
     font-weight: bolder;
     padding-top: 20px;
     border-top: 1px solid lightgray;
+    color: black;
   }
 
   &__author {
@@ -43,5 +44,6 @@
     font-style: italic;
     padding-top: 5px;
     color: #3c3e42;
+    padding-bottom: 10px;
   }
 }

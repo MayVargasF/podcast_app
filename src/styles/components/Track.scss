@@ -8,19 +8,22 @@
     &__title {
         font-weight: bolder;
         padding-top: 20px;
+        font-size: 20px;
       }
 
     &__description {
         font-style: italic;
-        padding-top: 5px;
+        padding-top: 15px;
         color: #3c3e42;
-        margin-bottom: 20px;
+        margin-bottom: 40px;
         }
 
-
-    &__audio {
-       
-        color: #3c3e42;
+    &__audio__container {
+        min-width: 40vw;
     }
-    
+
+    audio {
+        width: 100%;
+        height: 30px;
+    }    
 }

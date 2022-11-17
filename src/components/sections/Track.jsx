@@ -1,17 +1,25 @@
-import '../../styles/components/Track.scss';
+import "../../styles/components/Track.scss";
+import ls from "../../services/localstorage.js";
 
-const Track = ({ episodes }) => { 
+const Track = ({ episodeFound }) => {
+  const episode = episodeFound || ls.get("episodeFound");
 
-//Traer datos de EpisodeFound (cambiar prop) y terminar de dar estilos. 
+  return (
+    <section className="track">
+      <h2 className="track__title">{episode.name}</h2>
+      <p className="track__description">{episode.description}</p>
 
-    return (<section className='track'>
-        <h2 className='track__title'>Título episodio</h2>
-        <p className='track__description'>Descripción episodio</p>
+      <div className="track__audio__container">
         <audio controls>
-         <source className='track__audio' src={episodes.track} type='audio/mpeg'></source>
+          <source
+            className="track__audio"
+            src={episode.track}
+            type="audio/mpeg"
+          ></source>
         </audio>
-    </section>)
+      </div>
+    </section>
+  );
 };
-
 
 export default Track;
