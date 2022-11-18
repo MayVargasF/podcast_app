@@ -1,8 +1,13 @@
 import { Link, useParams } from "react-router-dom";
+import { useEffect } from "react";
 import "../../styles/components/EpisodesList.scss";
 
-function EpisodesList({ episodes }) {
+function EpisodesList({ episodes, loadingUpdate }) {
   const params = useParams();
+
+  useEffect(() => {
+    loadingUpdate(false);
+  });
 
   const episode = episodes.map((episode, index) => (
     <ul key={index} className="episodesList__episodesContainer__episode">
@@ -10,6 +15,7 @@ function EpisodesList({ episodes }) {
         <Link
           to={`/podcast/${params.podcastId}/episode/${episode.id}`}
           className="episodesList__episodesContainer__episode__link"
+          onClick={() => loadingUpdate(true)}
         >
           {episode.name}
         </Link>

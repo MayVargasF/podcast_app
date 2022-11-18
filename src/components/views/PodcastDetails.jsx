@@ -3,11 +3,11 @@ import EpisodesList from "../sections/EpisodesList.jsx";
 
 import "../../styles/components/ViewDetails.scss";
 
-const PodcastDetails = ({ podcastFound, episodes }) => {
+const PodcastDetails = ({ podcastFound, episodes, loadingUpdate }) => {
   return (
     <div className="viewDetails">
       <InfoPodcast podcastFound={podcastFound} />
-      <EpisodesList episodes={episodes} />
+      <EpisodesList episodes={episodes} loadingUpdate={loadingUpdate} />
     </div>
   );
 };

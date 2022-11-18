@@ -19,6 +19,12 @@ function App() {
 
   const [episodes, setEpisodes] = useState(ls.get("podcastEpisodesLs", []));
 
+  const [loading, setLoading] = useState(true);
+
+  const loadingUpdate = (bool) => {
+    setLoading(bool);
+  };
+
   //Fetch popular podcasts.
 
   useEffect(() => {
@@ -73,17 +79,31 @@ function App() {
     }
   }, [podcastId]);
 
+  console.log(loading);
+
   return (
     <div className="globalContainer">
-      <Header />
+      <Header loading={loading} />
 
       <Routes>
-        <Route path="/" element={<Home popularPodcasts={popularPodcasts} />} />
+        <Route
+          path="/"
+          element={
+            <Home
+              popularPodcasts={popularPodcasts}
+              loadingUpdate={loadingUpdate}
+            />
+          }
+        />
 
         <Route
           path="/podcast/:podcastId"
           element={
-            <PodcastDetails podcastFound={podcastFound} episodes={episodes} />
+            <PodcastDetails
+              podcastFound={podcastFound}
+              episodes={episodes}
+              loadingUpdate={loadingUpdate}
+            />
           }
         />
 

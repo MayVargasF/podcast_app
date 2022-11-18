@@ -5,7 +5,7 @@ import ResultsList from "../sections/ResultsList.jsx";
 
 import ls from "../../services/localstorage.js";
 
-function Home({ popularPodcasts }) {
+function Home({ popularPodcasts, loadingUpdate }) {
   const [filter, setFilter] = useState(ls.get("filter", ""));
 
   const filterUpdater = (value) => {
@@ -13,6 +13,9 @@ function Home({ popularPodcasts }) {
   };
 
   useEffect(() => ls.set("filter", filter), [filter]);
+  useEffect(() => {
+    loadingUpdate(false);
+  });
 
   const filteredPodcast =
     filter !== ""
@@ -33,7 +36,10 @@ function Home({ popularPodcasts }) {
         filter={filter}
         filteredPodcastLength={filteredPodcast.length}
       />
-      <ResultsList filteredPodcast={filteredPodcast} />
+      <ResultsList
+        filteredPodcast={filteredPodcast}
+        loadingUpdate={loadingUpdate}
+      />
     </main>
   );
 }
