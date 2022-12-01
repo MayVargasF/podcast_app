@@ -1,13 +1,16 @@
 import { Link, useParams } from "react-router-dom";
-import { useEffect } from "react";
+import { useContext } from "react";
+
 import "../../styles/components/EpisodesList.scss";
 
-function EpisodesList({ episodes, loadingUpdate }) {
-  const params = useParams();
+import { LoadingContext } from "../../contexts/LoadingContext";
 
-  useEffect(() => {
-    loadingUpdate(false);
-  });
+import { dateFormat } from "../../services/dateFormat";
+import { timeConversor } from "../../services/timeConversor";
+
+function EpisodesList({ episodes }) {
+  const params = useParams();
+  const cntxLoadingContext = useContext(LoadingContext);
 
   const episode = episodes.map((episode, index) => (
     <ul key={index} className="episodesList__episodesContainer__episode">
@@ -15,16 +18,16 @@ function EpisodesList({ episodes, loadingUpdate }) {
         <Link
           to={`/podcast/${params.podcastId}/episode/${episode.id}`}
           className="episodesList__episodesContainer__episode__link"
-          onClick={() => loadingUpdate(true)}
+          onClick={() => cntxLoadingContext.setLoading(true)}
         >
           {episode.name}
         </Link>
       </li>
       <li className="episodesList__episodesContainer__center">
-        {episode.date}
+        {dateFormat(episode.date)}
       </li>
       <li className="episodesList__episodesContainer__center">
-        {episode.duration}
+        {timeConversor(episode.duration)}
       </li>
     </ul>
   ));
@@ -38,8 +41,9 @@ function EpisodesList({ episodes, loadingUpdate }) {
           <li className="episodesList__episodesContainer__center">Date</li>
           <li className="episodesList__episodesContainer__center">Duration</li>
         </ul>
-
-        {episode}
+        {!cntxLoadingContext.loading
+          ? episode
+          : "Cargando lista de episodios..."}
       </article>
     </section>
   );

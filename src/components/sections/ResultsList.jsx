@@ -2,15 +2,20 @@ import PreviewItem from "../commons/PreviewItem";
 import "../../styles/components/ResultsList.scss";
 
 import { Link } from "react-router-dom";
+import { useContext } from "react";
 
-function ResultsList({ filteredPodcast, loadingUpdate }) {
+import { LoadingContext } from "../../contexts/LoadingContext.js";
+
+function ResultsList({ filteredPodcast }) {
+  const cntxLoadingContext = useContext(LoadingContext);
+
   const podcast = filteredPodcast.map((podcast, index) => (
     <Link
       className="link"
       to={`/podcast/${podcast.id}`}
       key={index}
       id={podcast.id}
-      onClick={() => loadingUpdate(true)}
+      onClick={() => cntxLoadingContext.setLoading(true)}
     >
       <PreviewItem podcast={podcast} />
     </Link>

@@ -3,8 +3,7 @@
 
 .episodesList {
     margin: 20px;
-    width: 60%;
-    
+    width: auto;
     
     &__title {
         font-weight: bolder;
@@ -23,6 +22,7 @@
     &__header {
         display: grid;
         grid-template-columns: 3fr 1fr 1fr;
+        gap: 80px;
         font-weight: bolder;
         padding-bottom: 10px;
         border-bottom: 2.2px solid rgba(128, 128, 128, 0.367);
@@ -31,7 +31,7 @@
 
     &__episode {
         display: grid;
-        grid-template-columns: 3fr 1fr 1fr;
+        grid-template-columns: 1.3fr 1fr 1fr;
         padding-bottom: 10px;
         border-bottom: 1px solid rgba(128, 128, 128, 0.367);
 

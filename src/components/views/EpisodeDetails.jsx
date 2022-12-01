@@ -1,19 +1,33 @@
 import InfoPodcast from "../commons/infoPodcast.jsx";
 import Track from "../sections/Track.jsx";
 
-import ls from '../../services/localstorage.js';
+import { LoadingContext } from "../../contexts/LoadingContext.js";
 
-import '../../styles/components/ViewDetails.scss';
+import { useContext, useEffect } from "react";
 
+import ls from "../../services/localstorage.js";
 
-const EpisodeDetails = ({ episodeFound }) => { 
-    
-    const podcastFound = ls.get('podcastFound');
+import "../../styles/components/ViewDetails.scss";
 
-    return (<div className='viewDetails'>
-        <InfoPodcast podcastFound={ podcastFound }/>
-        <Track episodeFound={ episodeFound }/>
-    </div>)
+const EpisodeDetails = ({ episodeFound }) => {
+  const podcastFound = ls.get("podcastFound");
+
+  const cntxLoadingContext = useContext(LoadingContext);
+
+  useEffect(() => {
+    if (cntxLoadingContext.loading) {
+      cntxLoadingContext.setLoading(false);
+    }
+  }, [cntxLoadingContext]);
+
+  return (
+    !cntxLoadingContext.loading && (
+      <div className="viewDetails">
+        <InfoPodcast podcastFound={podcastFound} />
+        <Track episodeFound={episodeFound} />
+      </div>
+    )
+  );
 };
 
 export default EpisodeDetails;

@@ -2,8 +2,10 @@ import Header from "./commons/Header.jsx";
 import Home from "./views/Home.jsx";
 import PodcastDetails from "./views/PodcastDetails.jsx";
 
+import { LoadingContext } from "../contexts/LoadingContext.js";
+
 import getPopularPodcasts from "../services/popularFetch.js";
-import getEpisodes from "../services/podcastFetch.js";
+import getEpisodes from "../services/episodesFetch.js";
 import ls from "../services/localstorage.js";
 
 import { useEffect, useState } from "react";
@@ -17,7 +19,7 @@ function App() {
     ls.get("popularPodcastLs", [])
   );
 
-  const [episodes, setEpisodes] = useState(ls.get("podcastEpisodesLs", []));
+  //const [episodes, setEpisodes] = useState(ls.get("podcastEpisodesLs", []));
 
   const [loading, setLoading] = useState(true);
 
@@ -52,6 +54,7 @@ function App() {
     ls.set("podcastFound", podcastFound);
   }
 
+  const [episodes, setEpisodes] = useState([]);
   //Get episodeFound
 
   const episodeDataPath = matchPath(
@@ -62,7 +65,10 @@ function App() {
   const episodeId =
     episodeDataPath !== null ? episodeDataPath.params.episodeId : null;
 
-  const episodeFound = episodes.find((episode) => episode.id === episodeId);
+  const episodeFound =
+    episodes.length > 0
+      ? episodes.find((episode) => episode.id === episodeId)
+      : null;
 
   if (episodeFound) {
     ls.set("episodeFound", episodeFound);
@@ -79,40 +85,34 @@ function App() {
     }
   }, [podcastId]);
 
-  console.log(loading);
-
   return (
-    <div className="globalContainer">
-      <Header loading={loading} />
-
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <Home
-              popularPodcasts={popularPodcasts}
-              loadingUpdate={loadingUpdate}
-            />
-          }
-        />
-
-        <Route
-          path="/podcast/:podcastId"
-          element={
-            <PodcastDetails
-              podcastFound={podcastFound}
-              episodes={episodes}
-              loadingUpdate={loadingUpdate}
-            />
-          }
-        />
-
-        <Route
-          path="/podcast/:podcastId/episode/:episodeId"
-          element={<EpisodeDetails episodeFound={episodeFound} />}
-        />
-      </Routes>
-    </div>
+    <LoadingContext.Provider
+      value={{ loading: loading, setLoading: setLoading }}
+    >
+      <div className="globalContainer">
+        <Header />
+        <Routes>
+          <Route
+            path="/podcast_app/"
+            element={<Home popularPodcasts={popularPodcasts} />}
+          />
+          <Route
+            path="/podcast/:podcastId"
+            element={
+              <PodcastDetails
+                podcastFound={podcastFound}
+                episodes={episodes}
+                loadingUpdate={loadingUpdate}
+              />
+            }
+          />
+          <Route
+            path="/podcast/:podcastId/episode/:episodeId"
+            element={<EpisodeDetails episodeFound={episodeFound} />}
+          />
+        </Routes>
+      </div>
+    </LoadingContext.Provider>
   );
 }
 

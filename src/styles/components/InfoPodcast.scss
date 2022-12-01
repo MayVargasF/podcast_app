@@ -4,7 +4,7 @@
   display: flex;
   flex-direction: column;
   box-shadow: -2px 5px 10px -3px rgba(156, 156, 156, 0.721);
-  height: min-content;
+  height: max-content;
 
   &__container {
     width: 80%;
@@ -41,6 +41,7 @@
   }
 
   &__summary {
+    word-wrap: break-word;
     font-style: italic;
     padding-top: 5px;
     color: #3c3e42;

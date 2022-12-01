@@ -4,18 +4,27 @@ import Filter from "../commons/Filter.jsx";
 import ResultsList from "../sections/ResultsList.jsx";
 
 import ls from "../../services/localstorage.js";
+import { LoadingContext } from "../../contexts/LoadingContext.js";
+import { useContext } from "react";
 
-function Home({ popularPodcasts, loadingUpdate }) {
+function Home({ popularPodcasts }) {
   const [filter, setFilter] = useState(ls.get("filter", ""));
 
   const filterUpdater = (value) => {
     setFilter(value);
   };
 
+  const cntxLoadingContext = useContext(LoadingContext);
+
   useEffect(() => ls.set("filter", filter), [filter]);
+
   useEffect(() => {
-    loadingUpdate(false);
-  });
+    if (cntxLoadingContext.loading) {
+      setTimeout(() => {
+        cntxLoadingContext.setLoading(false);
+      }, 2000);
+    }
+  }, [cntxLoadingContext]);
 
   const filteredPodcast =
     filter !== ""
@@ -36,10 +45,9 @@ function Home({ popularPodcasts, loadingUpdate }) {
         filter={filter}
         filteredPodcastLength={filteredPodcast.length}
       />
-      <ResultsList
-        filteredPodcast={filteredPodcast}
-        loadingUpdate={loadingUpdate}
-      />
+      {!cntxLoadingContext.loading && (
+        <ResultsList filteredPodcast={filteredPodcast} />
+      )}
     </main>
   );
 }
